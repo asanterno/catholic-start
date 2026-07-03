@@ -454,6 +454,7 @@ function shareThisPage(){
   <button class="tab-btn" onclick="switchTab('comparison')">Denominational Comparison</button>
   <button class="tab-btn" onclick="switchTab('deepdive')">Each Tradition In Depth</button>
   <button class="tab-btn" onclick="switchTab('questions')">Seed Questions</button>
+  <button class="tab-btn" onclick="switchTab('feasts')">The Feasts</button>
 </nav>
 
 <main>
@@ -924,6 +925,176 @@ function shareThisPage(){
     <div class="q-context">The olive tree metaphor is Paul's own canonical image for the relationship between Israel and the Church. One tree (continuity) with different branches (Jew/Gentile) is a harder image to fit into a "two peoples / two programs" framework without significant qualification.</div>
   </div>
 
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TAB 5 — THE FEASTS
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-feasts">
+  <p class="section-title" style="margin-top:1.5rem">The Seven Feasts of Leviticus 23</p>
+  <p class="section-lead">God hands Israel its entire liturgical calendar in a single chapter — Leviticus 23. Four feasts cluster in spring, three in fall, with a long gap between them mirroring the gap between Christ's first and second comings. Click any card to expand.</p>
+
+  <div class="card-expand open" style="position:static; margin: 0 0 1.75rem 0; padding: 1rem 1.25rem; border: 1px solid var(--gold-dim, #d4af3755); border-radius: 6px; background: rgba(212,175,55,0.06);">
+    <div class="detail-row"><span class="detail-label">The Pattern</span><span class="detail-value">The four <strong>spring</strong> feasts (Passover, Unleavened Bread, Firstfruits, Pentecost) were fulfilled with striking precision, in order, at Christ's first coming and the birth of the Church. The three <strong>fall</strong> feasts (Trumpets, Atonement, Tabernacles) are widely read — across Catholic and Protestant traditions alike — as pointing to events still ahead: the resurrection call, final judgment, and God dwelling fully with his people. That's an "already / not yet" pattern worth naming explicitly rather than assuming.</span></div>
+  </div>
+
+  <div class="covenant-grid">
+
+    <!-- Feast 1: Passover -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 01 · Spring</div>
+          <div class="card-title">Passover (Pesach)</div>
+          <div class="card-parties">Nisan 14</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:5; Exodus 12</div>
+        <div class="card-description">A lamb without blemish is slain, its blood applied to the doorposts, and the destroyer passes over — the founding redemption of Israel's national life.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">A lamb is slaughtered at twilight, roasted whole, and eaten with unleavened bread and bitter herbs — eaten in haste, ready to leave</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">Commemorates the tenth plague and the exodus from Egypt</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">John the Baptist calls Jesus "the Lamb of God" (John 1:29). Jesus is crucified at the very hour the Passover lambs were being slaughtered in the Temple (John 19:14, 31–36) — John underlines this, not coincidence. Paul states it plainly: "Christ, our Passover lamb, has been sacrificed" (1 Cor 5:7). The Last Supper is itself a Passover meal, which is why the Eucharist inherits Passover's structure of a sacrificial meal that delivers those who eat it.</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">The clearest and most load-bearing typology of all seven feasts — worth anchoring the whole page around this one</span></div>
+      </div>
+    </div>
+
+    <!-- Feast 2: Unleavened Bread -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 02 · Spring</div>
+          <div class="card-title">Unleavened Bread</div>
+          <div class="card-parties">Nisan 15–21</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:6–8; Exodus 12:15–20</div>
+        <div class="card-description">Seven days with no leaven in the house — leaven functioning throughout Scripture as a picture of sin or corruption spreading through a mass.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">All leaven removed from the home; unleavened bread (matzah) eaten for seven days; first and last days are sacred assemblies with rest from work</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">Recalls the haste of the exodus — no time for bread to rise — and calls the community to purity</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">Paul draws on this directly: "Clean out the old leaven that you may be a new lump... Christ, our Passover lamb, has been sacrificed. Let us therefore celebrate the festival... with the unleavened bread of sincerity and truth" (1 Cor 5:6–8). Jesus lies in the tomb during these very days.</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">Practically inseparable from Passover — together they form one continuous eight-day observance</span></div>
+      </div>
+    </div>
+
+    <!-- Feast 3: Firstfruits -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 03 · Spring</div>
+          <div class="card-title">Firstfruits</div>
+          <div class="card-parties">Day after the Sabbath during Unleavened Bread</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:9–14</div>
+        <div class="card-description">The first sheaf of the barley harvest is waved before the Lord — before any of the harvest may be eaten, the first portion is consecrated.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">A priest waves a sheaf of the first grain before the altar, accompanied by a burnt offering and grain/drink offering</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">Acknowledges that the whole harvest belongs to God; the first portion consecrates what follows</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">Paul: "Christ has been raised from the dead, the firstfruits of those who have fallen asleep... in Christ shall all be made alive" (1 Cor 15:20–23). Most chronologies place the resurrection on this very feast day — the "third day" after Passover — the first of a coming harvest of resurrected believers.</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">A striking calendar coincidence: the resurrection lands on the one feast whose entire meaning is "the first of the harvest, guaranteeing the rest"</span></div>
+      </div>
+    </div>
+
+    <!-- Feast 4: Pentecost -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 04 · Spring</div>
+          <div class="card-title">Pentecost (Shavuot / Weeks)</div>
+          <div class="card-parties">50 days after Firstfruits</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:15–22; Deut 16:9–12</div>
+        <div class="card-description">A wheat-harvest festival that later Jewish tradition also ties to the giving of the Law at Sinai, fifty days after the exodus.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">Two loaves of leavened bread offered as firstfruits of the wheat harvest, with accompanying sacrifices — a pilgrimage feast</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">Celebrates the wheat harvest and, in later tradition, the covenant given at Sinai — the birth of Israel as a covenant nation under the Law</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">Acts 2 — the Spirit descends on the apostles at Pentecost, exactly fifty days after the resurrection. If Sinai's Pentecost gave the Law written on stone, Acts 2's Pentecost gives the Spirit who writes the law on hearts (Jer 31:33; 2 Cor 3:3). Three thousand souls are added to the Church that day — an echo, in reverse, of the three thousand who died after the golden calf at the first Pentecost (Ex 32:28).</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">Unlike Unleavened Bread, leaven is permitted here — often read as representing the Church itself: a real but imperfect body, offered to God as she is</span></div>
+      </div>
+    </div>
+
+    <!-- Feast 5: Trumpets -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 05 · Fall</div>
+          <div class="card-title">Trumpets (Rosh Hashanah)</div>
+          <div class="card-parties">Tishri 1</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:23–25; Num 29:1–6</div>
+        <div class="card-description">A day marked by trumpet blasts — the text itself gives far less explanation of its meaning than the other six feasts.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">A sacred assembly, rest from work, the blowing of trumpets (shofar), and burnt offerings</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">Ambiguous in the text itself; later Judaism reads it as a new year, a day of judgment, and a call to repentance ahead of Atonement</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">Often connected to the trumpet calls associated with Christ's return and the resurrection of the dead — "the last trumpet" (1 Cor 15:52), "the trumpet of God" at the Second Coming (1 Thess 4:16)</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">Honest caveat: this is the one feast where the christological link is more traditional/typological than textually explicit, unlike Passover or Atonement — worth naming that difference rather than overstating the certainty</span></div>
+      </div>
+    </div>
+
+    <!-- Feast 6: Day of Atonement -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 06 · Fall</div>
+          <div class="card-title">Day of Atonement (Yom Kippur)</div>
+          <div class="card-parties">Tishri 10</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:26–32; Lev 16</div>
+        <div class="card-description">The most solemn day of the year — the one day the high priest enters the Holy of Holies to make atonement for the whole nation.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">A day of fasting and total rest; the high priest sacrifices a bull for his own sin, then two goats for the people — one slain as a sin offering, the other (the "scapegoat") sent into the wilderness bearing the people's sins</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">The yearly reset of the covenant relationship — sin dealt with corporately, the sanctuary itself cleansed</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">Hebrews 9–10 builds its whole argument for Christ's priesthood around this feast: Christ enters the true Holy of Holies (heaven itself) once for all, with his own blood, securing an eternal redemption (Heb 9:11–12). The two goats are often read together as one picture of Christ's work — substitutionary death and sins carried away.</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">The feast Hebrews is most saturated with — a natural cross-reference if you build out a Hebrews-focused study later</span></div>
+      </div>
+    </div>
+
+    <!-- Feast 7: Tabernacles -->
+    <div class="covenant-card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Feast 07 · Fall</div>
+          <div class="card-title">Tabernacles (Sukkot)</div>
+          <div class="card-parties">Tishri 15–21</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-reference">Lev 23:33–43; Deut 16:13–15</div>
+        <div class="card-description">A seven-day feast of dwelling in temporary booths, remembering the wilderness wandering after the exodus.</div>
+        <button class="expand-toggle" onclick="toggleCard(this)"><span class="arrow">▶</span> Details</button>
+      </div>
+      <div class="card-expand">
+        <div class="detail-row"><span class="detail-label">Practice</span><span class="detail-value">Israelites live in branch-built shelters for seven days; a pilgrimage feast with water-drawing and light ceremonies (in later Second Temple practice) and the largest sacrifice count of any feast</span></div>
+        <div class="detail-row"><span class="detail-label">OT Meaning</span><span class="detail-value">A harvest festival of ingathering and a yearly re-enactment of dependence on God during the wilderness years</span></div>
+        <div class="detail-row"><span class="detail-label">Fulfillment in Christ</span><span class="detail-value">John 1:14 — "the Word became flesh and dwelt (literally, 'tabernacled') among us" — deliberately uses Tabernacles language for the incarnation. Jesus' teaching in John 7–8 (living water, "I am the light of the world") is delivered during this very feast, drawing on its water and light ceremonies. Revelation 21:3 echoes the same "tabernacling" language for God's dwelling with humanity in the new creation.</span></div>
+        <div class="detail-row"><span class="detail-label">Note</span><span class="detail-value">Like Trumpets, this one has both a past fulfillment (John 1, John 7–8) and a still-future dimension (Rev 21:3; Zech 14:16) — a good feast for discussing the "already / not yet" pattern explicitly</span></div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 </main>
