@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Abraham to Jesus — The Covenant Line | Forged &amp; Faithful</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: only light;
+    --bg: #0f1a2b;
+    --bg-card: #16253d;
+    --bg-card-branch: #131f33;
+    --gold: #c9a227;
+    --gold-soft: #d9bd5f;
+    --text: #e8e2d0;
+    --text-dim: #a9b3c7;
+    --muted: #6f7a8f;
+    --line: #3a4658;
+    --branch-line: #4a4230;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    font-family: 'Crimson Text', serif;
+  }
+
+  body {
+    padding: 2.5rem 1.25rem 5rem;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .backlink {
+    display: inline-block;
+    color: var(--gold-soft);
+    text-decoration: none;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid transparent;
+  }
+  .backlink:hover { border-bottom-color: var(--gold-soft); }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--gold-soft);
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0 0 0.75rem;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 1rem;
+  }
+  .legend span { display: flex; align-items: center; gap: 0.4rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.spine { background: var(--gold); }
+  .dot.branch { background: var(--muted); }
+
+  .tree {
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .tree::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .node {
+    position: relative;
+    margin-bottom: 0.9rem;
+  }
+
+  .node::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 22px;
+    width: 20px;
+    height: 2px;
+    background: var(--line);
+  }
+
+  .node-dot {
+    position: absolute;
+    left: -33px;
+    top: 15px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    cursor: pointer;
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--gold-soft);
+  }
+
+  .ref {
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .oneliner {
+    margin: 0.35rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+  }
+
+  .detail {
+    display: none;
+    margin-top: 0.65rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .card.open .detail { display: block; }
+
+  .toggle-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  /* Branch (non-narrative-line) styling */
+  .branches {
+    margin: 0.5rem 0 1.1rem 14px;
+    padding-left: 20px;
+    border-left: 2px dashed var(--branch-line);
+  }
+
+  .branch-card {
+    background-color: var(--bg-card-branch);
+    border: 1px solid var(--branch-line);
+    border-left: 3px solid var(--muted);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+  }
+
+  .branch-card .name {
+    font-size: 1rem;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+
+  .branch-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--muted);
+    border: 1px solid var(--branch-line);
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    margin-left: 0.5rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .branch-card .oneliner {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    .name { font-size: 1.05rem; }
+    .card-head { flex-direction: column; gap: 0.15rem; }
+  }
+
+  /* --- Divergence / event banners --- */
+  .banner {
+    text-align: center;
+    margin: 1.75rem 0 1.5rem;
+    position: relative;
+  }
+  .banner-line {
+    border-top: 1px dashed var(--line);
+    margin-bottom: -0.7rem;
+  }
+  .banner-label {
+    display: inline-block;
+    background: var(--bg);
+    padding: 0 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  .banner-note {
+    max-width: 640px;
+    margin: 0.6rem auto 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+    text-align: left;
+    cursor: pointer;
+  }
+  .banner-note .name { font-size: 1rem; }
+  .banner-note .detail { display: none; }
+  .banner-note.open .detail { display: block; }
+
+  .event-banner {
+    text-align: center;
+    margin: 1.4rem 0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--branch-line);
+    border-bottom: 1px solid var(--branch-line);
+    padding: 0.5rem 0;
+  }
+
+  /* --- Two-column genealogy split --- */
+  .split-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .split-col {
+    position: relative;
+  }
+  .split-col-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold-soft);
+    text-align: center;
+    margin-bottom: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+  .split-col-sub {
+    display: block;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .mini-tree {
+    position: relative;
+    padding-left: 20px;
+  }
+  .mini-tree::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--line);
+  }
+  .mini-node {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  .mini-node::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 12px;
+    width: 14px;
+    height: 2px;
+    background: var(--line);
+  }
+  .mini-dot {
+    position: absolute;
+    left: -24px;
+    top: 7px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1.5px var(--gold);
+  }
+  .mini-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--gold);
+    border-radius: 5px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+  .mini-card.hasnote { cursor: pointer; }
+  .mini-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--gold-soft);
+    display: block;
+  }
+  .mini-ref {
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .mini-exile-tag {
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-top: 0.15rem;
+  }
+  .mini-detail {
+    display: none;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-size: 0.82rem;
+  }
+  .mini-card.open .mini-detail { display: block; }
+
+  .convergence {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 620px) {
+    .split-wrap { grid-template-columns: 1fr; }
+    .split-col + .split-col { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--line); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NOTE for Al: point this at whatever section anchor your index.html uses
+       for the covenant/genealogy tools once section-aware back-nav is wired up. -->
+  <a class="backlink" href="index.html#covenant">&larr; Back to Covenant &amp; Israel</a>
+
+  <header>
+    <h1>Abraham to Jesus</h1>
+    <p class="subtitle">The Covenant Line &mdash; from the call of Abraham through the Babylonian exile and return, to Christ<br>(Jeff Cavins' "Narrative" and "Exile &amp; Return" periods, converging in the Gospels)</p>
+    <div class="legend">
+      <span><span class="dot spine"></span> Narrative spine</span>
+      <span><span class="dot branch"></span> Off the spine &mdash; tap for why it matters</span>
+    </div>
+  </header>
+
+  <div class="tree" id="tree"></div>
+
+  <div class="banner" id="divergence-banner">
+    <div class="banner-line"></div>
+    <span class="banner-label">David's two sons</span>
+    <div class="banner-note" id="divergence-note">
+      <span class="name">Why are there two genealogies from here?</span>
+      <p class="oneliner">Matthew traces David's line through Solomon (the throne); Luke traces it through Nathan, another son of David. Tap for the harmonization.</p>
+      <div class="detail">
+        Matthew 1 and Luke 3 agree completely from Abraham to David, then split. Matthew follows Solomon &mdash; the royal, legal line of succession to the throne. Luke follows Nathan, a different son of David entirely. The two lines run in parallel for roughly nine hundred years and then meet again at Shealtiel and Zerubbabel around the exile, before splitting a second time and finally converging at Joseph.
+        <br><br>
+        The traditional harmonizations offered by early Christian writers (e.g. Julius Africanus, and later Eusebius) generally take one of two approaches: either Luke gives Mary's biological ancestry while Matthew gives Joseph's legal/royal line (making Jesus a true "son of David" both legally through Joseph and by blood through Mary), or both genealogies trace Joseph but through different mechanisms &mdash; including a levirate marriage that would make one line biological and the other legal at a specific generation. Scripture doesn't settle which explanation is correct; both were considered live options by the earliest interpreters.
+      </div>
+    </div>
+  </div>
+
+  <div class="split-wrap">
+    <div class="split-col">
+      <div class="split-col-title">Matthew's Line<span class="split-col-sub">Solomon &mdash; the royal/legal line</span></div>
+      <div class="mini-tree" id="matthew-tree"></div>
+    </div>
+    <div class="split-col">
+      <div class="split-col-title">Luke's Line<span class="split-col-sub">Nathan's line</span></div>
+      <div class="mini-tree" id="luke-tree"></div>
+    </div>
+  </div>
+
+  <div class="convergence" id="convergence"></div>
+
+  <footer>Tap any name to expand. Built for Forged &amp; Faithful.</footer>
+</div>
+
+<script>
+// Each spine entry can carry an optional `branches` array of names
+// that peel off at that generation but are not part of the direct
+// line to David.
+const spine = [
+  {
+    name: "Abraham",
+    ref: "Gen 12, 15, 17",
+    oneliner: "Called out of Ur; receives the covenant promise: land, descendants, blessing to all nations.",
+    detail: "God's threefold promise to Abram in Genesis 12 becomes a formal covenant in Genesis 15 and 17, sealed with circumcision. Everything downstream in Scripture is God working out this one promise.",
+    branches: [
+      {
+        name: "Ishmael",
+        tag: "via Hagar",
+        oneliner: "Blessed, but not the covenant heir.",
+        detail: "Born to Hagar (Gen 16), Ishmael is genuinely blessed by God (Gen 17:20 &mdash; twelve princes, a great nation) but the covenant itself is explicitly continued through Isaac, \"whom Sarah shall bear\" (Gen 17:21). Paul later uses Hagar and Sarah as an allegory contrasting slavery under the law with freedom under promise (Gal 4:21-31)."
+      }
+    ]
+  },
+  {
+    name: "Isaac",
+    ref: "Gen 21, 22",
+    oneliner: "The child of promise, born to Sarah in old age &mdash; not Ishmael.",
+    detail: "Isaac's near-sacrifice on Mount Moriah (Gen 22) is one of the clearest Old Testament foreshadowings of Christ: the beloved son, the wood he carries himself, the substitute provided at the last moment.",
+    branches: [
+      {
+        name: "Esau",
+        tag: "elder twin",
+        oneliner: "Sold his birthright; father of Edom.",
+        detail: "Esau, the elder, sells his birthright for a bowl of stew (Gen 25:29-34) and is later denied the blessing. \"Jacob I loved, but Esau I hated\" (Mal 1:2-3, quoted in Rom 9:13) is covenant-election language about the two nations descending from them, not a statement about God's personal feelings toward the man."
+      }
+    ]
+  },
+  {
+    name: "Jacob (Israel)",
+    ref: "Gen 32, 35",
+    oneliner: "Renamed \"Israel\" after wrestling with God; fathers the twelve tribes.",
+    detail: "With Jacob the covenant stops being passed to a single heir and is passed instead to an entire family that will become a nation &mdash; the twelve tribes of Israel.",
+    branches: [
+      {
+        name: "The other sons of Jacob",
+        tag: "10 of 12 tribes",
+        oneliner: "Form the nation, but not the kingly line.",
+        detail: "Aside from Judah (kingly line, followed below), two brothers matter most for the unfolding narrative: <strong>Levi</strong>, whose descendants become the priesthood (Moses and Aaron are Levites, Exodus 6), and <strong>Joseph</strong>, sold into Egypt by his brothers, who becomes the means of the family's survival and whose sons Ephraim and Manasseh become tribes in their own right (Gen 37-50)."
+      }
+    ]
+  },
+  {
+    name: "Judah",
+    ref: "Gen 49:10",
+    oneliner: "One of twelve sons, but chosen for kingship: \"the scepter shall not depart from Judah.\"",
+    detail: "Judah's own story includes a serious moral failure and course-correction with Tamar (Gen 38) &mdash; the line to David runs directly through that scandal, not around it.",
+    branches: [
+      {
+        name: "Zerah",
+        tag: "Perez's twin",
+        oneliner: "Born by the scarlet-thread trick; Perez takes precedence.",
+        detail: "At the births of Judah and Tamar's twins, Zerah's hand appears first and a scarlet thread is tied to it &mdash; but Perez is the one actually born first (Gen 38:27-30). Jewish tradition has long read this small reversal as a foretaste of God's larger pattern of choosing the unexpected line."
+      }
+    ]
+  },
+  {
+    name: "Perez",
+    ref: "Gen 38; Ruth 4:18",
+    oneliner: "Son of Judah and Tamar; his line is preserved despite the scandal of his birth.",
+    detail: "Perez opens the genealogy that closes the book of Ruth (Ruth 4:18-22), the direct bridge from the patriarchs to David."
+  },
+  {
+    name: "Hezron",
+    ref: "Ruth 4:18; 1 Chr 2:5",
+    oneliner: "A transitional generation bridging the patriarchal era to Israel's tribal records."
+  },
+  {
+    name: "Ram",
+    ref: "Ruth 4:19",
+    oneliner: "Sparsely recorded, but the line stays documented through the quiet pre-Exodus generations."
+  },
+  {
+    name: "Amminadab",
+    ref: "Ex 6:23; Ruth 4:19",
+    oneliner: "His daughter Elisheba marries Aaron &mdash; the kingly and priestly lines are already intertwined by marriage.",
+    detail: "This is an easy detail to miss: Judah's royal line and Levi's priestly line cross paths generations before either kingship or priesthood is formally established at Sinai."
+  },
+  {
+    name: "Nahshon",
+    ref: "Num 1:7; 2:3",
+    oneliner: "Tribal leader of Judah during the Exodus &mdash; a contemporary of Moses.",
+    detail: "Nahshon anchors this genealogy to a fixed historical moment: he's alive and leading Judah's census division at the time Israel leaves Egypt."
+  },
+  {
+    name: "Salmon",
+    ref: "Matt 1:5",
+    oneliner: "Marries Rahab, the Canaanite who hid Israel's spies at Jericho.",
+    detail: "Rahab's inclusion in the line to David (and later Matthew's genealogy of Christ) is an early, deliberate sign that the covenant was never meant to stay ethnically closed."
+  },
+  {
+    name: "Boaz",
+    ref: "Ruth 2-4",
+    oneliner: "Kinsman-redeemer who marries Ruth, a Moabite widow.",
+    detail: "The entire book of Ruth exists narratively to get the reader from the chaos of Judges to the birth of David, and it ends by saying so explicitly with its own genealogy (Ruth 4:18-22)."
+  },
+  {
+    name: "Obed",
+    ref: "Ruth 4:17, 21-22",
+    oneliner: "Son of Boaz and Ruth; grandfather of David."
+  },
+  {
+    name: "Jesse",
+    ref: "1 Sam 16; Isa 11:1",
+    oneliner: "Father of David, of Bethlehem.",
+    detail: "\"A shoot shall come forth from the stump of Jesse\" (Isa 11:1) becomes one of the central messianic prophecies &mdash; naming Jesse rather than David keeps the promise anchored to this specific family line."
+  },
+  {
+    name: "David",
+    ref: "2 Sam 7",
+    oneliner: "King of Israel; the covenant is renewed and expanded &mdash; an everlasting throne.",
+    detail: "The Davidic covenant (2 Sam 7:12-16) promises a throne established forever. The New Testament opens by tracing Jesus back to exactly this point (Matt 1:1; Luke 1:32), presenting him as the fulfillment of the promise that starts all the way back with Abraham."
+  }
+];
+
+const treeEl = document.getElementById('tree');
+
+spine.forEach((person, i) => {
+  const node = document.createElement('div');
+  node.className = 'node';
+
+  const dot = document.createElement('div');
+  dot.className = 'node-dot';
+  node.appendChild(dot);
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-head">
+      <span class="name">${person.name}</span>
+      <span class="ref">${person.ref || ''}</span>
+    </div>
+    <p class="oneliner">${person.oneliner}</p>
+    ${person.detail ? `<div class="detail">${person.detail}</div><div class="toggle-hint">tap to ${''}collapse</div>` : ''}
+  `;
+
+  if (person.detail) {
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+  } else {
+    card.style.cursor = 'default';
+  }
+
+  node.appendChild(card);
+  treeEl.appendChild(node);
+
+  if (person.branches && person.branches.length) {
+    const branchWrap = document.createElement('div');
+    branchWrap.className = 'branches';
+
+    person.branches.forEach(b => {
+      const bcard = document.createElement('div');
+      bcard.className = 'branch-card';
+      bcard.innerHTML = `
+        <div class="card-head">
+          <span class="name">${b.name}<span class="branch-tag">${b.tag}</span></span>
+        </div>
+        <p class="oneliner">${b.oneliner}</p>
+        <div class="detail">${b.detail}</div>
+      `;
+      bcard.addEventListener('click', () => bcard.classList.toggle('open'));
+      branchWrap.appendChild(bcard);
+    });
+
+    treeEl.appendChild(branchWrap);
+  }
+});
+
+// Divergence banner note toggle
+document.getElementById('divergence-note').addEventListener('click', function () {
+  this.classList.toggle('open');
+});
+
+// Matthew's line: David -> Solomon -> ... -> Joseph (Matt 1:6-16)
+const matthewLine = [
+  { name: "Solomon", ref: "Matt 1:6" },
+  { name: "Rehoboam", ref: "Matt 1:7" },
+  { name: "Abijah", ref: "Matt 1:7" },
+  { name: "Asa", ref: "Matt 1:7" },
+  { name: "Jehoshaphat", ref: "Matt 1:8" },
+  { name: "Jehoram", ref: "Matt 1:8",
+    detail: "Matthew's list telescopes here, skipping three kings (Ahaziah, Joash, Amaziah) between Jehoram and Uzziah &mdash; a common and accepted practice in ancient genealogies, which often record representative names rather than every generation." },
+  { name: "Uzziah", ref: "Matt 1:8-9" },
+  { name: "Jotham", ref: "Matt 1:9" },
+  { name: "Ahaz", ref: "Matt 1:9" },
+  { name: "Hezekiah", ref: "Matt 1:9-10" },
+  { name: "Manasseh", ref: "Matt 1:10" },
+  { name: "Amon", ref: "Matt 1:10" },
+  { name: "Josiah", ref: "Matt 1:10-11" },
+  { name: "Jeconiah", ref: "Matt 1:11",
+    exileTag: "Exile begins",
+    detail: "Jeconiah (Jehoiachin) is the king carried off to Babylon in 597 BC (2 Kings 24:8-15). Matthew marks this deportation explicitly (Matt 1:11-12) as the hinge point of his whole genealogy &mdash; fourteen generations to David, fourteen to the exile, fourteen from exile to Christ." },
+  { name: "Shealtiel", ref: "Matt 1:12", exileTag: "In exile" },
+  { name: "Zerubbabel", ref: "Matt 1:12-13",
+    exileTag: "Leads the return",
+    detail: "Zerubbabel leads the first wave of exiles back to Jerusalem and oversees the rebuilding of the temple (Ezra 3, Haggai 1-2). Both Matthew and Luke name Shealtiel and Zerubbabel at this point &mdash; the one place the two genealogies touch again between David and Joseph." },
+  { name: "Abiud", ref: "Matt 1:13" },
+  { name: "Eliakim", ref: "Matt 1:13" },
+  { name: "Azor", ref: "Matt 1:13-14" },
+  { name: "Zadok", ref: "Matt 1:14" },
+  { name: "Achim", ref: "Matt 1:14" },
+  { name: "Eliud", ref: "Matt 1:14-15" },
+  { name: "Eleazar", ref: "Matt 1:15" },
+  { name: "Matthan", ref: "Matt 1:15" },
+  { name: "Jacob", ref: "Matt 1:15-16" },
+  { name: "Joseph", ref: "Matt 1:16",
+    detail: "In Matthew, Joseph is \"the husband of Mary, of whom Jesus was born\" (Matt 1:16) &mdash; the text is careful to say Joseph did not beget Jesus, only that he was Mary's husband. This is Matthew's legal line to the throne, given to Jesus through adoption/legal paternity." }
+];
+
+// Luke's line: David -> Nathan -> ... -> Joseph (Luke 3:23-31, reversed to descending order)
+const lukeLine = [
+  { name: "Nathan", ref: "Luke 3:31" },
+  { name: "Mattatha", ref: "Luke 3:31" },
+  { name: "Menna", ref: "Luke 3:31" },
+  { name: "Melea", ref: "Luke 3:31" },
+  { name: "Eliakim", ref: "Luke 3:30" },
+  { name: "Jonam", ref: "Luke 3:30" },
+  { name: "Joseph", ref: "Luke 3:30" },
+  { name: "Judah", ref: "Luke 3:30" },
+  { name: "Simeon", ref: "Luke 3:30" },
+  { name: "Levi", ref: "Luke 3:29" },
+  { name: "Matthat", ref: "Luke 3:29" },
+  { name: "Jorim", ref: "Luke 3:29" },
+  { name: "Eliezer", ref: "Luke 3:29" },
+  { name: "Joshua (Jose)", ref: "Luke 3:29" },
+  { name: "Er", ref: "Luke 3:28" },
+  { name: "Elmadam", ref: "Luke 3:28" },
+  { name: "Cosam", ref: "Luke 3:28" },
+  { name: "Addi", ref: "Luke 3:28" },
+  { name: "Melki", ref: "Luke 3:28" },
+  { name: "Neri", ref: "Luke 3:27",
+    exileTag: "Exile era",
+    detail: "Neri sits at roughly the same generation as the exile in Luke's line &mdash; most of the names between Nathan and Neri are otherwise unknown outside this genealogy, a reminder that Scripture doesn't preserve a full narrative for every branch of the family." },
+  { name: "Shealtiel", ref: "Luke 3:27", exileTag: "In exile" },
+  { name: "Zerubbabel", ref: "Luke 3:27",
+    exileTag: "Leads the return",
+    detail: "The same Shealtiel and Zerubbabel named in Matthew appear here too &mdash; whether this reflects the same individuals or a coincidence of names across the two lines is debated, but it's the one point of contact between the genealogies before Joseph." },
+  { name: "Rhesa", ref: "Luke 3:27" },
+  { name: "Joanan", ref: "Luke 3:27" },
+  { name: "Joda", ref: "Luke 3:26" },
+  { name: "Josech", ref: "Luke 3:26" },
+  { name: "Semein", ref: "Luke 3:26" },
+  { name: "Mattathias", ref: "Luke 3:26" },
+  { name: "Maath", ref: "Luke 3:26" },
+  { name: "Naggai", ref: "Luke 3:25" },
+  { name: "Esli", ref: "Luke 3:25" },
+  { name: "Nahum", ref: "Luke 3:25" },
+  { name: "Amos", ref: "Luke 3:25" },
+  { name: "Mattathias", ref: "Luke 3:25" },
+  { name: "Joseph", ref: "Luke 3:24" },
+  { name: "Jannai", ref: "Luke 3:24" },
+  { name: "Melki", ref: "Luke 3:24" },
+  { name: "Levi", ref: "Luke 3:24" },
+  { name: "Matthat", ref: "Luke 3:24" },
+  { name: "Heli", ref: "Luke 3:23",
+    detail: "Luke calls Joseph \"the son of Heli\" (Luke 3:23), while Matthew calls him son of Jacob. One long-standing explanation: Heli is Joseph's father-in-law &mdash; that is, Mary's father &mdash; making this Mary's biological line, with Joseph named as her husband per the customary way of tracing lineage through the male head of household." }
+];
+
+function renderMini(containerId, list) {
+  const el = document.getElementById(containerId);
+  list.forEach(p => {
+    const node = document.createElement('div');
+    node.className = 'mini-node';
+    const dot = document.createElement('div');
+    dot.className = 'mini-dot';
+    node.appendChild(dot);
+
+    const card = document.createElement('div');
+    card.className = 'mini-card' + (p.detail ? ' hasnote' : '');
+    card.innerHTML = `
+      <span class="mini-name">${p.name} <span class="mini-ref">${p.ref}</span></span>
+      ${p.exileTag ? `<span class="mini-exile-tag">${p.exileTag}</span>` : ''}
+      ${p.detail ? `<div class="mini-detail">${p.detail}</div>` : ''}
+    `;
+    if (p.detail) {
+      card.addEventListener('click', () => card.classList.toggle('open'));
+    }
+    node.appendChild(card);
+    el.appendChild(node);
+  });
+}
+
+renderMini('matthew-tree', matthewLine);
+renderMini('luke-tree', lukeLine);
+
+// Convergence: Joseph & Mary -> Jesus
+const convEl = document.getElementById('convergence');
+convEl.innerHTML = `
+  <div class="event-banner">Joseph, husband of Mary</div>
+  <div class="node" style="margin-left: 0;">
+    <div class="card open" id="jesus-card" style="border-left-color: var(--gold); cursor: pointer;">
+      <div class="card-head">
+        <span class="name">Jesus, called Christ</span>
+        <span class="ref">Matt 1:16; Luke 3:23</span>
+      </div>
+      <p class="oneliner">Both genealogies arrive here: "of whom Jesus was born, who is called Christ" (Matt 1:16).</p>
+      <div class="detail">
+        Neither Gospel claims Joseph is Jesus' biological father &mdash; both are careful on this point. What the genealogies establish is legal and, through Mary, likely biological descent from David, fulfilling the promise made all the way back to Abraham (Gen 12) and renewed to David (2 Sam 7): that through this one family, every nation on earth would be blessed.
+      </div>
+    </div>
+  </div>
+`;
+document.getElementById('jesus-card').addEventListener('click', function () {
+  this.classList.toggle('open');
+});
+</script>
+</body>
+</html>
